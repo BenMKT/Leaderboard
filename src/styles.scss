@@ -1,0 +1,13 @@
+$myBorder: 2px solid black;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.table_container {
+  width: 100%;
+  border: $myBorder;
+  border-radius: 2px;
+}
