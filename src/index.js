@@ -9,7 +9,8 @@ const form = document.querySelector('.form');
 
 const getScores = async () => {
   const response = await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BenKGame/scores');
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BenKGame/scores',
+  );
   const json = await response.json();
   leaderboard = json.result;
 
