@@ -8,30 +8,33 @@ const table = document.querySelector('.table_container');
 const form = document.querySelector('.form');
 
 const getScores = async () => {
-  try {
+  
     const response = await fetch(
       'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BenKGame/scores',
     );
     const json = await response.json();
     leaderboard = json.result;
 
-    // Sort the leaderboard based on scores in descending order
-    leaderboard.sort((a, b) => b.score - a.score);
-
-    table.innerHTML = '';
+    const uniqueScores = new Set();
+    // Loop through the leaderboard array and add each user and score pair to the Set
     leaderboard.forEach((dat) => {
-      //   console.log(table);
+      uniqueScores.add(`${dat.user}: ${dat.score}`);
+    });
+    // Convert the Set back to an array
+    leaderboard = Array.from(uniqueScores);
+    // Sort the leaderboard based on scores in descending order
+    leaderboard.sort((a, b) => b.split(': ')[1] - a.split(': ')[1]);
+    // console.log(leaderboard);
+    table.innerHTML = '';
+    leaderboard.forEach((entry) => {
       const row = document.createElement('tr');
       const name = document.createElement('td');
       name.className = 'point';
-      name.textContent = `${dat.user}: ${dat.score}`;
+      name.textContent = entry;
       row.appendChild(name);
       table.appendChild(row);
     });
-  } catch (error) {
-    // Handle the error
-  }
-};
+  } 
 
 const addScore = async (userName, userScore) => {
   if (!userName || !userScore) {
@@ -39,7 +42,6 @@ const addScore = async (userName, userScore) => {
     return;
   }
 
-  try {
     const response = await fetch(
       'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BenKGame/scores',
       {
@@ -60,9 +62,6 @@ const addScore = async (userName, userScore) => {
     form.reset();
     // user.value = '';
     // score.value = '';
-  } catch (error) {
-    // Handle the error
-  }
 };
 
 document.querySelector('.refresh').addEventListener('click', () => {
