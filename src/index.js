@@ -53,7 +53,7 @@ const addScore = async (userName, userScore) => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }
+    },
   );
   const json = await response.json();
   if (json.response === 'Leaderboard score created.') {
