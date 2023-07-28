@@ -31,7 +31,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 # 📖Leaderboard : Setup<a name="about-project"></a>
-For this milestone, I create a setup of the structure and layout for a leaderboard webpage, displaying recent scores and allowing users to add their own scores.
+Leaderboard is an engaging web application designed to showcase and rank the top performers in a specific game. The application allows users to submit their scores, which are stored and managed through a powerful API, and view the current rankings in real-time. Built using the Leaderboard API, Webpack, JavaScript Async and Await and some basic SASS styling.
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
