@@ -6,10 +6,11 @@ const user = document.getElementById('Inputname');
 const score = document.getElementById('Inputscore');
 const table = document.querySelector('.table_container');
 const form = document.querySelector('.form');
+const benKGame = 'HwfCqMzx5VLRyqSiDhD8';
 
 const getScores = async () => {
   const response = await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BenKGame/scores',
+    `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${benKGame}/scores`,
   );
   const json = await response.json();
   leaderboard = json.result;
@@ -42,7 +43,7 @@ const addScore = async (userName, userScore) => {
   }
 
   const response = await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BenKGame/scores',
+    `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${benKGame}/scores`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -52,7 +53,7 @@ const addScore = async (userName, userScore) => {
       headers: {
         'Content-Type': 'application/json',
       },
-    },
+    }
   );
   const json = await response.json();
   if (json.response === 'Leaderboard score created.') {
